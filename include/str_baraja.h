@@ -8,4 +8,8 @@ typedef struct {
 	int cantidad;
 } Baraja;
 
+void inicializar_baraja(Baraja *baraja);
+void mezclar_baraja(Baraja *baraja);
+Carta repartir(Baraja *baraja);
 
+#endif
