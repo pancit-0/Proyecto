@@ -1,7 +1,7 @@
 #ifndef BARAJA_H
 #define BARAJA_H
 
-#include "carta.h"
+#include "str_carta.h"
 
 #define NUM_CARTAS 52
 
