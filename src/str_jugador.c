@@ -1,4 +1,5 @@
 #include "str_jugador.h"
+#include "str_carta.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -17,6 +18,8 @@ void inicializar_jugador(Jugador *j, const char *nombre){
 	strncpy(j->nombre, nombre, NOMBRE_MAX);
 	j->nombre[NOMBRE_MAX - 1] = '\0';
 	j->cantidad_cartas = 0;
+	j->saldo = 1000;
+	j->apuesta = 0;
 }
 
 int obtener_puntaje(Jugador *j){
@@ -62,4 +65,37 @@ char* mostrar_mano(Jugador *j){
 
 bool esta_dentro_juego(Jugador *j){
 	return obtener_puntaje(j) <= 21;
+}
+
+bool realizar_apuesta(Jugador *j, int monto){
+	if (monto < 300){
+		printf("Apuesta mínima requerida es 300""\n");
+			return false;
+	}
+
+	if (monto > j->saldo){
+		printf("Apuesta inválida, el monto no puede ser mayor al saldo.""\n");
+		return false;
+	}
+
+	j->apuesta = monto;
+	j->saldo -= monto;
+	return true;
+
+
+}
+
+void actualizar_saldo_ganador(Jugador *j){
+	j->saldo += (j->apuesta * 2);
+
+}
+
+void actualizar_saldo_perdedor(Jugador *j){
+	// La apuesta ya fué descontada de su saldo.
+	//
+	//
+}
+
+void reiniciar_apuesta(Jugador *j){
+	j->apuesta = 0;
 }
