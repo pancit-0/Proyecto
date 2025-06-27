@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include "baraja.h"
-#include "carta.h"
+#include "str_baraja.h"
+#include "str_carta.h"
 
 void inicializar_baraja(Baraja *baraja) {
 	char *valores[] = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
