@@ -1,4 +1,4 @@
-#include "crupier.h"
+#include "str_crupier.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
