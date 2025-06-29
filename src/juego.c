@@ -11,6 +11,11 @@ void inicializar_juego(Juego* juego) {
 }
 
 void reiniciar_juego(Juego* juego) {
+    if (juego->crupier.carta_oculta != NULL) {
+        free(juego->crupier.carta_oculta);
+        juego->crupier.carta_oculta = NULL;
+    }
+    
     inicializar_baraja(&juego->baraja);
     inicializar_jugador(&juego->jugador, "jugador");
     inicializar_crupier(&juego->crupier);
@@ -24,6 +29,13 @@ void cartas_iniciales(Juego* juego) {
         recibir_carta(&juego->jugador, c1);
         Carta c2 = repartir(&juego->baraja);
         recibir_carta(&juego->crupier.base, c2);
+
+        juego->crupier.carta_oculta = malloc(sizeof(Carta));
+        if (juego->crupier.carta_oculta != NULL) {
+            *(juego->crupier.carta_oculta) = repartir(&juego->baraja);
+        } else {
+            printf("Error al asignar carta oculta al crupier.\n");
+        }
     }
 
 }
