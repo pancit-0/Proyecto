@@ -1,10 +1,11 @@
 #include "raylib.h"
 #include "menu.h"
+#include "juego.h"
 
 int main() {
     const int screenW = 800; // Dimensiones de la ventana
     const int screenH = 600;
-    InitWindow(screenW, screenH, "Menu C - Raylib"); // Funcion de raylib que crea la ventana "Menu C - Raylib"
+    InitWindow(screenW, screenH, "Blackjack - Raylib"); // Funcion de raylib que crea la ventana "Blackjack - Raylib"
     //InitAudioDevice();  // Futuro audio
     SetTargetFPS(60); // FPS objetivo
 
@@ -13,12 +14,18 @@ int main() {
     while (!WindowShouldClose()) { // Bucle principal del juego, mantiene el menu activo y se repite 60 veces por segundo
         int choice = ActualizarMenu(&menu); // Actualiza el menu y devuelve la opcion seleccionada
         switch (choice) { // Elige opcion segun la opcion (en el futuro cambiara) 
-            case 1: CloseWindow(); return 0; // Cierra la ventana y termina el programa al precionarse un boton
+            case 1: 
+                CloseWindow();
+                jugar_blackjack_gui(); // Llama a la funcion de jugar blackjack
+
             case 2: CloseWindow(); return 0;
+
+
             case 3: CloseWindow(); return 0;
         }
 
         BeginDrawing(); // Inicia el dibujo de la ventana (el nuevo frame)
+        ClearBackground(RAYWHITE); // Limpia el fondo de la ventana con un color blanco
         DibujarMenu(&menu); // Dibuja el menu en la ventana segun los valores obtenidos en el bucle anterior
         EndDrawing(); //Termina el dibujo de la ventana 
     }

@@ -10,6 +10,55 @@ Boton CrearBoton(float x, float y, float w, float h, const char* text) { // Crea
     return b;
 }
 
+void jugar_blackjack_gui() {
+    InitWindow(800, 600, "Blackjack");
+    SetTargetFPS(60); 
+
+
+    Juego juego;
+    inicializar_juego(&juego);
+    cartas_iniciales(&juego); 
+
+    bool turnoJugador = true; // Indica si es el turno del jugador
+    bool juegoTerminado = false; // Indica si el juego ha terminado
+
+    while (!WindowShouldClose() {
+        BeginDrawing();
+        ClearBackground(RAYWHITE); // Limpia el fondo de la ventana con un color blanco
+
+        if (!juegoTerminado) {
+            if (turnoJugador) {
+                // Dibujar botones "Pedir" y "Plantarse"
+                DrawText("Tu turno", 50, 30, 20, WHITE);
+                DrawText("Click izquierdo = Pedir, Click derecho = Plantarse", 50, 60, 20, WHITE);
+
+                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+                    Carta nueva = repartir(&juego.baraja);
+                    recibir_carta(&juego.jugador, nueva);
+                    if (!esta_dentro_juego(&juego.jugador)) {
+                        juegoTerminado = true;
+                    }
+                }
+                if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) {
+                    turnoJugador = false;
+                }
+
+            } else {
+                turno_crupier(&juego);
+                juegoTerminado = true;
+            }
+        } else {
+            ganador_juego(&juego);
+            DrawText("Presiona ESC para salir...", 50, 550, 20, GRAY);
+        }
+
+        EndDrawing();
+    }
+
+    CloseWindow();
+
+}
+
 void DibujarBoton(Boton* b) {
     bool hovered = CheckCollisionPointRec(GetMousePosition(), b->bounds); // Comprueba si el raton esta sobre el boton 
     DrawRectangleRec(b->bounds, hovered ? b->hoverColor : b->color); 
