@@ -13,6 +13,14 @@ int obtener_valor(Carta *carta) {
 	}
 }
 
+char* carta_a_cadena(Carta carta) {
+	char* cadena = malloc(50 * sizeof(char));
+	if (cadena != NULL) {
+		sprintf(cadena, "%s de %s", carta.valor, carta.palo);
+	}
+	return cadena;
+}
+
 void imprimir_carta(Carta *carta) {
 	printf("%s de %s", carta->valor, carta->palo);
 }

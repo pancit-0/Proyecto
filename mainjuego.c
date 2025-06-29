@@ -1,11 +1,12 @@
 #include "juego.h"
 #include <stdio.h>
+#include <string.h>
 
 
 int main() {
     Juego juego;
     inicializar_juego(&juego);
-    return 0;
+    printf("¡Bienvenido al juego de Blackjack!\n");
 
     while (1) {
         jugar(&juego);

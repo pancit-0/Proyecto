@@ -1,17 +1,19 @@
 #ifndef JUGADOR_H
 #define JUGADOR_H
 
+#include "str_carta.h"
+
 #define NOMBRE_MAX 30
 #define CARTAS_MAX 20
 typedef struct {
 	char nombre[NOMBRE_MAX];
-	int mano[CARTAS_MAX];
+	Carta mano[CARTAS_MAX];
 	int cantidad_cartas;
 	int saldo;
 	int apuesta;
 }Jugador;
 
-void recibir_carta(Jugador *j, int carta);
+void recibir_carta(Jugador *j, Carta carta);
 
 void inicializar_jugador(Jugador *j, const char *nombre);
 

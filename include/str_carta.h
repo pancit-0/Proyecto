@@ -8,5 +8,6 @@ typedef struct {
 
 int obtener_valor(Carta *carta);
 void imprimir_carta(Carta *carta);
+char* carta_a_cadena(Carta carta);
 
 #endif

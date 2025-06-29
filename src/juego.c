@@ -1,14 +1,18 @@
 #include "juego.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
 
 void inicializar_juego(Juego* juego) {
     inicializar_baraja(&juego->baraja);
-    inicializar_jugador(&juego->jugador);
+    inicializar_jugador(&juego->jugador, "jugador");
     inicializar_crupier(&juego->crupier);
 }
 
 void reiniciar_juego(Juego* juego) {
     inicializar_baraja(&juego->baraja);
-    inicializar_jugador(&juego->jugador);
+    inicializar_jugador(&juego->jugador, "jugador");
     inicializar_crupier(&juego->crupier);
     reiniciar_apuesta(&juego->jugador);
 }
@@ -53,7 +57,7 @@ bool turno_jugador(Juego* juego) {
         }
     } 
     if (!esta_dentro_juego(&juego->jugador)) {
-        mostrar_estado(juego);
+        //mostrar_estado(juego);
         printf("Te has pasado de 21. ¡Has perdido!\n");
         return false; 
     }
@@ -62,7 +66,7 @@ bool turno_jugador(Juego* juego) {
 }
 
 void turno_crupier(Juego* juego) {
-    recibir_carta(&juego->crupier.base, juego->crupier.carta_oculta); 
+    recibir_carta(&juego->crupier.base, *juego->crupier.carta_oculta); 
     char* mano = mostrar_mano(&juego->crupier.base); // Añadir la carta oculta a la mano del crupier
     printf("Mano completa del crupier: %s (Puntaje: %d)\n", mano, obtener_puntaje(&juego->crupier.base));
     free(mano); 

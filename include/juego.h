@@ -19,7 +19,6 @@ void cartas_iniciales(Juego* juego);
 void mostrar_mano_jugador(Juego* juego);
 bool turno_jugador(Juego* juego);
 void turno_crupier(Juego* juego);
-void turno_crupier(Juego* juego);
 void ganador_juego(Juego* juego);
 void jugar(Juego* juego);
 

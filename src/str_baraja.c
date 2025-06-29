@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <time.h>
 #include "str_baraja.h"
 #include "str_carta.h"
@@ -23,8 +24,8 @@ void inicializar_baraja(Baraja *baraja) {
 void mezclar_baraja(Baraja *baraja) {
 	srand(time(NULL));
 	for (int i = 0; i < baraja->cantidad; i++) {
-		int j = ran() % baraja->cantidad;
-		Carta temp = baraja->cantidad;
+		int j = rand() % baraja->cantidad;
+		Carta temp = baraja->cartas[i];
 		baraja->cartas[i] = baraja->cartas[j];
 		baraja->cartas[j] = temp;
 	}
