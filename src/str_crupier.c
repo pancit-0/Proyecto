@@ -1,4 +1,5 @@
 #include "str_crupier.h"
+#include "str_jugador.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +8,10 @@
 void inicializar_crupier(Crupier* crupier){
 	inicializar_jugador(&(crupier->base), "crupier");
 	crupier->carta_oculta = NULL;
+}
+
+bool crupier_debe_pedir(Crupier!* crupier){
+	return obtener_puntaje(&crupier->base) < 17;
 }
 
 const char* mostrar_carta_visible(Crupier* crupier){
