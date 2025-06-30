@@ -164,9 +164,9 @@ int main() {
                 DrawText(buf, 50, 60, 20, BLACK);
 
                 sprintf(buf, "Plata: %d", juego.jugador.saldo);
-                DrawText(buf, 600, 10, 20, DARKGREEN);
+                DrawText(buf, 600, 60, 20, DARKGREEN);
                 sprintf(buf, "Apuesta: %d", juego.jugador.apuesta);
-                DrawText(buf, 600, 40, 20, MAROON);
+                DrawText(buf, 600, 90, 20, MAROON);
 
 
                 if (!juegoTerminado) {
@@ -198,8 +198,6 @@ int main() {
                     DrawText(resultado, 50, 380, 25, RED);
                     if (juego.jugador.saldo >= 700 && juego.jugador.saldo < 6000)
                         DrawText("ENTER para apostar otra vez", 50, 420, 20, DARKGRAY);
-                    else
-                        DrawText("Q para volver al menu", 50, 420, 20, RED);
                 }
             } break;
 
@@ -228,7 +226,7 @@ int main() {
                     sprintf(texto, "Apuesta actual: %d", monto_apuesta);
                     DrawText(texto, 50, 100, 30, DARKBLUE);
                     DrawText("Flechas ARRIBA/ABAJO para cambiar la apuesta", 50, 200, 20, GRAY);
-                    DrawText("ENTER para confirmar, Q para volver al menú", 50, 250, 20, GRAY);
+                    DrawText("ENTER para confirmar la apuesta", 50, 240, 20, GRAY);
                 }
                 break;
 
