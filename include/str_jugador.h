@@ -2,6 +2,7 @@
 #define JUGADOR_H
 
 #include "str_carta.h"
+#include <stdbool.h>
 
 #define NOMBRE_MAX 30
 #define CARTAS_MAX 20
