@@ -4,7 +4,6 @@
 #include "str_jugador.h"
 #include "str_baraja.h" 
 #include "str_crupier.h"
-#include <stdbool.h>
 
 
 typedef struct {
