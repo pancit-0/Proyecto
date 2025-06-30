@@ -1,5 +1,5 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef GUI_H
+#define GUI_H
 
 #include "raylib.h"
 
@@ -21,6 +21,5 @@ bool BotonFueClickeado(Boton* b);  // Verifica si el boton fue clickeado
 GameMenu CrearMenu(int screenW, int screenH);
 void DibujarMenu(GameMenu* m); // Dibuja el menu en la pantalla 
 int ActualizarMenu(GameMenu* m); // Actualiza el menu y devuelve la opcion seleccionada
-void DestruirMenu(GameMenu* m); // Libera los recursos del menu en la memoria
 
 #endif

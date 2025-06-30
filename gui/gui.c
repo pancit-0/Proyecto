@@ -1,4 +1,5 @@
-#include "menu.h"
+#include "gui.h"
+#include "juego.h"
 #include <string.h>
 
 Boton CrearBoton(float x, float y, float w, float h, const char* text) { // Crea un boton con las coordenadas x, y, el ancho w, la altura h y el texto text en el boton
@@ -8,55 +9,6 @@ Boton CrearBoton(float x, float y, float w, float h, const char* text) { // Crea
     b.color = GRAY; // Color de los botones
     b.hoverColor = LIGHTGRAY; //Color del boton al pasar el raton por encima
     return b;
-}
-
-void jugar_blackjack_gui() {
-    InitWindow(800, 600, "Blackjack");
-    SetTargetFPS(60); 
-
-
-    Juego juego;
-    inicializar_juego(&juego);
-    cartas_iniciales(&juego); 
-
-    bool turnoJugador = true; // Indica si es el turno del jugador
-    bool juegoTerminado = false; // Indica si el juego ha terminado
-
-    while (!WindowShouldClose() {
-        BeginDrawing();
-        ClearBackground(RAYWHITE); // Limpia el fondo de la ventana con un color blanco
-
-        if (!juegoTerminado) {
-            if (turnoJugador) {
-                // Dibujar botones "Pedir" y "Plantarse"
-                DrawText("Tu turno", 50, 30, 20, WHITE);
-                DrawText("Click izquierdo = Pedir, Click derecho = Plantarse", 50, 60, 20, WHITE);
-
-                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-                    Carta nueva = repartir(&juego.baraja);
-                    recibir_carta(&juego.jugador, nueva);
-                    if (!esta_dentro_juego(&juego.jugador)) {
-                        juegoTerminado = true;
-                    }
-                }
-                if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) {
-                    turnoJugador = false;
-                }
-
-            } else {
-                turno_crupier(&juego);
-                juegoTerminado = true;
-            }
-        } else {
-            ganador_juego(&juego);
-            DrawText("Presiona ESC para salir...", 50, 550, 20, GRAY);
-        }
-
-        EndDrawing();
-    }
-
-    CloseWindow();
-
 }
 
 void DibujarBoton(Boton* b) {
@@ -82,15 +34,24 @@ GameMenu CrearMenu(int screenW, int screenH) { // Estructura del menu con 3 boto
     float by0 = (screenH / 2) - 1.5f * bh;
 
     menu.botones[0] = CrearBoton(bx, by0 + 0 * (bh + 20), bw, bh, "Jugar");  // Crea los botones con 20 pixeles de separacion entre ellos y centrados en la pantalla
-    menu.botones[1] = CrearBoton(bx, by0 + 1 * (bh + 20), bw, bh, "Opciones");
+    menu.botones[1] = CrearBoton(bx, by0 + 1 * (bh + 20), bw, bh, "Instrucciones");
     menu.botones[2] = CrearBoton(bx, by0 + 2 * (bh + 20), bw, bh, "Salir");
 
     return menu;
 }
 
 void DibujarMenu(GameMenu* m) { 
-    ClearBackground(BLACK);  // Limpia el fonde de la ventana
+    ClearBackground(BROWN);  // Limpia el fonde de la ventana
     for (int i = 0; i < 3; i++) { // Dibuja los botones del menu llamando a la funcion DibujarBoton
         DibujarBoton(&m->botones[i]);
     }
+}
+
+int ActualizarMenu(GameMenu* menu) {
+    for (int i = 0; i < 3; i++) {
+        if (BotonFueClickeado(&menu->botones[i])) {
+            return i + 1; // 1: Jugar, 2: Opciones, 3: Salir
+        }
+    }
+    return 0;
 }
