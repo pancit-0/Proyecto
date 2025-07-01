@@ -216,12 +216,13 @@ int main() {
                 DrawText("- Flechas arriba/abajo: Cambiar monto de apuesta de 50 en 50", 70, 330, 20, GRAY);
                 DrawText("- ENTER: Confirmar apuesta o continuar", 70, 360, 20, GRAY);
                 DrawText("- ESC: Cerrar el programa", 70, 420, 20, GRAY);
+                DrawText("- Q: Para volver al menú", 70, 480, 20, GRAY);
                 break;
 
             case 3:
                 {
                     char texto[128];
-                    sprintf(texto, "Plata disponible: %d", juego.jugador.saldo);
+                    sprintf(texto, "Colones disponibles: %d", juego.jugador.saldo);
                     DrawText(texto, 50, 50, 30, DARKGREEN);
                     sprintf(texto, "Apuesta actual: %d", monto_apuesta);
                     DrawText(texto, 50, 100, 30, DARKBLUE);
